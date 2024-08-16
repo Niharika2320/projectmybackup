@@ -1,3 +1,4 @@
+<!-- <link rel="stylesheet" href="/root/client/src/app/registration/registration.component.css"> -->
 <div class="vh-100 d-flex justify-content-center align-items-center">
     <div class="container">
       <div class="row d-flex justify-content-center">
@@ -8,39 +9,48 @@
   
               <form class="mb-3 mt-md-4" [formGroup]="itemForm" (ngSubmit)="onRegister()">
                 <h4 class="fw-bold mb-2 text-uppercase ">LOGISTIC MANAGEMENT SYSTEM</h4>
+                
+
+                
                 <p class=" mb-5">Please enter your details here</p>
-                <div class="mb-3">
-                  <label for="username" class="form-label ">Username</label>
-                  <input type="text" name="username" formControlName="username" class="form-control" id="username"
-                    placeholder="Username">
-                  <div
-                    *ngIf="itemForm.get('username')?.invalid && (itemForm.get('username')?.dirty || itemForm.get('username')?.touched)"
-                    class="ng-dirty">
-                    <span class="text-danger">Please Enter UserName.</span>
-                  </div>
+                <label for="username">Username</label>
+                <input type="text" id="username" formControlName="username" class="form-control" placeholder="Username">
+                <div *ngIf="itemForm.get('username')?.touched && itemForm.get('username')?.errors?.['required']"
+                        class="error-message">
+                        Username is required.
                 </div>
-  
+                <div *ngIf="itemForm.get('username')?.errors?.['notUnique']" class="error-message">
+                        User already exists.
+                </div>
+        
+              
+
                 <div class="mb-3">
                   <label for="email" class="form-label ">Email address</label>
                   <input type="email" name="email" formControlName="email" class="form-control" id="email"
                     placeholder="name@example.com">
                   <div
-                    *ngIf="itemForm.get('email')?.invalid && (itemForm.get('email')?.dirty || itemForm.get('email')?.touched)"
-                    class="ng-dirty">
-                    <span class="text-danger">Please Enter email.</span>
-                    <span *ngIf="itemForm.errors?.['email']">Not a valid Email</span>
-                  </div>
+                    *ngIf="itemForm.get('email')?.invalid && (itemForm.get('email')?.hasError('emial') || itemForm.get('email')?.touched)"
+                    class="ng-dirty"> </div>
+                    <div *ngIf="
+                      itemForm.controls['email'].invalid &&
+                      (itemForm.controls['email'].dirty ||
+                      itemForm.controls['email'].touched)
+                    ">
+                  Email id should be unique</div>
   
                 </div>
   
                 <div class="mb-3">
                   <label for="password" class="form-label ">Password</label>
                   <input type="password" name="password" formControlName="password" class="form-control" id="password"
-                    placeholder="*******">
+                    placeholder="*******"
+                    required 
+                  pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&\\*\(\)_+\{\}\[\]\|:;'<>?,\.\/]).{8,}">
                   <div
                     *ngIf="itemForm.get('password')?.invalid && (itemForm.get('password')?.dirty || itemForm.get('password')?.touched)"
                     class="ng-dirty">
-                    <span class="text-danger">Please Enter password.</span>
+                    <span class="text-danger">Please Enter password or Enter the correct password Format</span>
                   </div>
                 </div>
   

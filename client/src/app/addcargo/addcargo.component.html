@@ -101,20 +101,21 @@
                       <div class="mb-3">
                           <label for="size" class="form-label ">Size</label>
                           <input type="size" name="size"  formControlName="size" [(ngModel)]="formModel.size" class="form-control" id="size" placeholder="Size">
-                          <div *ngIf="itemForm.controls['size'].invalid && (itemForm.controls['size'].dirty || itemForm.controls['size'].touched)"
-                          class="ng-dirty">
-                          <span *ngIf="itemForm.controls['size'].errors">
-                            <span class="text-danger">Please Enter size .</span>
-                          </span>
+                          <div *ngIf="itemForm.get('size')?.hasError('required') && itemForm.get('size')?.touched" class="error">
+                            <span class="text-danger">  size is required.</span>
+                          </div>
+                          <div *ngIf="itemForm.get('size')?.hasError('negativeValue') && itemForm.get('size')?.touched" class="error">
+                            <span class="text-danger">size must be a non-negative value.</span>
+                          </div>
                         </div>
-                        </div>
+                      
                   </div>
                   <div class="col-md-3">
                       <div class="mb-3">
                           <label for="status" class="form-label ">Status</label>
                           <select [(ngModel)]="formModel.status" formControlName="status"  class="form-control" name="" id="">
                             <option value="null">Choose Status</option>
-                             <option value="Order Delivered">Order Delivered</option>
+                             <!-- <option value="Order Delivered">Order Delivered</option> -->
                              <option value="Order Assigned">Order Assigned</option>
                              <option value="Order Delivered">Order Delivered</option>
                           </select>
@@ -204,3 +205,36 @@
     </div>
   </div>
 </div>
+
+
+<div class="row mt-3">
+  <div class="card">
+      <div class="card-header">
+     product update status
+        </div>
+                  <div class="col-md-3">
+                      <div class="mb-3">
+                          <label for="status" class="form-label ">Status</label>
+                          <select [(ngModel)]="formModel.status" formControlName="status"  class="form-control" name="" id="">
+                            <option value="null">Choose Status</option>
+                             <!-- <option value="Order Delivered">Order Delivered</option> -->
+                             <option value="Order Assigned">packed</option>
+                             <option value="Order Delivered">shipped</option>
+                             <option value="Order Delivered">delivered</option>
+                          </select>
+                          <!-- <input type="text" name="status"  formControlName="status" [(ngModel)]="formModel.status" class="form-control" id="status" placeholder="status"> -->
+                          <div *ngIf="itemForm.controls['status'].invalid && (itemForm.controls['status'].dirty || itemForm.controls['status'].touched)"
+                          class="ng-dirty">
+                          <span *ngIf="itemForm.controls['status'].errors">
+                            <span class="text-danger">Please Enter Status .</span>
+                          </span>
+                        </div>
+                        </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="d-grid">
+                          <br>
+                          <button class="btn btn-outline-dark mt-1" type="submitt">Submit</button>
+                        </div>
+                  </div>
+              </div>

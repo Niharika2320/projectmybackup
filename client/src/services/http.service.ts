@@ -88,6 +88,8 @@ export class HttpService {
     return this.http.post(this.serverName+'/api/register',details,{headers:headers});
   }
  
-  
+  getAllUsers(): Observable<any> {
+    return this.http.get(`${this.serverName}/api/register/json`, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+  }
   
 }

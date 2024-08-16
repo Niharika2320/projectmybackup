@@ -21,6 +21,7 @@ export class ViewcargostatusComponent {
 
   search()
   {
+    this.showError=false;
     debugger;
     if(this.cargoIdMd!=null)
     {

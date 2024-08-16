@@ -100,7 +100,7 @@
 
 
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { AuthService } from '../../services/auth.service';
@@ -125,7 +125,7 @@ export class AddcargoComponent implements OnInit {
     {
       this.itemForm = this.formBuilder.group({
         content: [this.formModel.username,[ Validators.required]],
-        size: [this.formModel.password,[ Validators.required]],
+        size: [this.formModel.password,[ Validators.required,this.nonNegativeValidator]],
         status: [this.formModel.password,[ Validators.required]]
        
     });
@@ -146,6 +146,13 @@ export class AddcargoComponent implements OnInit {
       this.errorMessage = "An error occurred while logging in. Please try again later.";
       console.error('Login error:', error);
     });;
+  }
+  nonNegativeValidator(control:AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (value < 0) {
+      return { 'negativeValue': true };
+    }
+    return null;
   }
   getDrivers() {
     this.driverList=[];

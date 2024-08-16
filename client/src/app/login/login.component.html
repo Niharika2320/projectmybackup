@@ -1,50 +1,156 @@
-<div class="vh-100 d-flex justify-content-center align-items-center">
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6">
-          <div class="border border-3 border-primary"></div>
-          <div class="card bg-white">
-            <div class="card-body p-5">
-              <form class="mb-3 mt-md-4" [formGroup]="itemForm" (ngSubmit)="onLogin()">
-                <h4 class="fw-bold mb-2 text-uppercase ">
-                   LOGISTIC MANAGEMENT SYSTEM
-                </h4>
-                <p class=" mb-5">Please enter your user and password!</p>
-                <div class="mb-3">
-                  <label for="username" class="form-label ">Username</label>
-                  <input type="username" name ="username"formControlName="username" [(ngModel)]="formModel.username" class="form-control" id="username" placeholder="name@example.com">
-                  <div *ngIf="itemForm.controls['username'].invalid && (itemForm.controls['username'].dirty || itemForm.controls['username'].touched)"
-                  class="ng-dirty">
-                  <span *ngIf="itemForm.controls['username'].errors">
-                    <span class="text-danger">Please Enter username .</span>
-                  </span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistic Management System</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .vh-100 {
+            height: 100vh;
+        }
+        .footer-content {
+            max-width: 100%;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+        .footer-content .row {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="vh-100 d-flex justify-content-center align-items-center">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    <div class="border border-3 border-primary"></div>
+                    <div class="card bg-white">
+                        <div class="card-body p-5">
+                            <form class="mb-3 mt-md-4" [formGroup]="itemForm" (ngSubmit)="onLogin()">
+                                <h4 class="fw-bold mb-2 text-uppercase">
+                                    LOGISTIC MANAGEMENT SYSTEM
+                                </h4>
+                                <p class="mb-5">Please enter your user and password!</p>
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="username" name="username" formControlName="username" [(ngModel)]="formModel.username" class="form-control" id="username" placeholder="Enter the username">
+                                    <div *ngIf="itemForm.controls['username'].invalid && (itemForm.controls['username'].dirty || itemForm.controls['username'].touched)" class="ng-dirty">
+                                        <span *ngIf="itemForm.controls['username'].errors">
+                                            <span class="text-danger">Please Enter username.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" name="password" formControlName="password" [(ngModel)]="formModel.password" class="form-control" id="password" placeholder="*******">
+                                    <div *ngIf="itemForm.controls['password'].invalid && (itemForm.controls['password'].dirty || itemForm.controls['password'].touched)" class="ng-dirty">
+                                        <span *ngIf="itemForm.controls['password'].errors">
+                                            <span class="text-danger">Please Enter password.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-dark" type="submit">Login</button>
+                                </div>
+                            </form>
+                            <div>
+                                <p class="mb-0 text-center">Don't have an account? <a (click)="registration()" class="text-primary fw-bold">Registration</a></p>
+                            </div>
+                            <div *ngIf="showError" class="alert alert-danger" role="alert">
+                                {{errorMessage}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label ">Password</label>
-                  <input type="password" name="password"  formControlName="password" [(ngModel)]="formModel.password" class="form-control" id="password" placeholder="*******">
-                  <div *ngIf="itemForm.controls['password'].invalid && (itemForm.controls['password'].dirty || itemForm.controls['password'].touched)"
-                  class="ng-dirty">
-                  <span *ngIf="itemForm.controls['password'].errors">
-                    <span class="text-danger">Please Enter password .</span>
-                  </span>
-                </div>
-                </div>
-  
-                <div class="d-grid">
-                  <button class="btn btn-outline-dark" type="submit">Login</button>
-                </div>
-              </form>
-              <div>
-                <p class="mb-0  text-center">Don't have an account? <a (click)="registration()"
-                    class="text-primary fw-bold">Registration</a></p>
-              </div>
-              <div *ngIf="showError" class="alert alert-danger" role="alert">
-                {{errorMessage}}
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <div class="container footer-content">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>ABOUT</h5>
+                    <ul class="list-unstyled">
+                        <li>Contact Us</li>
+                        <li>About Us</li>
+                        <li>Careers</li>
+                        <li>Flipkart Stories</li>
+                        <li>Press</li>
+                        <li>Corporate Information</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>GROUP COMPANIES</h5>
+                    <ul class="list-unstyled">
+                        <li>Myntra</li>
+                        <li>Cleartrip</li>
+                        <li>Shopsy</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>HELP</h5>
+                    <ul class="list-unstyled">
+                        <li>Payments</li>
+                        <li>Shipping</li>
+                        <li>Cancellation & Returns</li>
+                        <li>FAQ</li>
+                        <li>Report Infringement</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>CONSUMER POLICY</h5>
+                    <ul class="list-unstyled">
+                        <li>Cancellation & Returns</li>
+                        <li>Terms Of Use</li>
+                        <li>Security</li>
+                        <li>Privacy</li>
+                        <li>Sitemap</li>
+                        <li>Grievance Redressal</li>
+                        <li>EPR Compliance</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Mail Us:</h5>
+                    <p>Flipkart Internet Private Limited,<br>
+                    Buildings Alyssa, Begonia &<br>
+                    Clove Embassy Tech Village,<br>
+                    Outer Ring Road, Devarabeesanahalli Village,<br>
+                    Bengaluru, 560103,<br>
+                    Karnataka, India</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Registered Office Address:</h5>
+                    <p>Flipkart Internet Private Limited,<br>
+                    Buildings Alyssa, Begonia &<br>
+                    Clove Embassy Tech Village,<br>
+                    Outer Ring Road, Devarabeesanahalli Village,<br>
+                    Bengaluru, 560103,<br>
+                    Karnataka, India<br>
+                    CIN : U51109KA2012PTC066107<br>
+                    Telephone: 044-45614700 / 044-67415800</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Become a Seller | Advertise | Gift Cards | Help Center</p>
+                    <p>© 2007-2024 Flipkart.com</p>
+                    <p>Follow us on 
+                        <a href="https://twitter.com/yourprofile" target="_blank" class="text-white"><i class="fab fa-twitter"></i> Twitter</a>, 
+                        <a href="https://facebook.com/yourprofile" target="_blank" class="text-white"><i class="fab fa-facebook"></i> Facebook</a>, 
+                        <a href="https://instagram.com/yourprofile" target="_blank" class="text-white"><i class="fab fa-instagram-square"></i> Instagram</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

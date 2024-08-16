@@ -1,19 +1,109 @@
-<div class="row text-center">
-<h1 class="text-capitalize">Welcome to Logistic Management System</h1>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistic Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e9ecef;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            animation: fadeIn 2s;
+        }
+        h1 {
+            color: #28a745;
+            animation: slideIn 1.5s;
+        }
+        .mb-4 {
+            margin-bottom: 1.5rem !important;
+        }
+        img {
+            border-radius: 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .navbar-custom {
+            background-color: #007bff;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: #ffffff;
+        }
+        footer {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <a class="navbar-brand" href="#">Logistic Management</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
+    <div class="container text-center my-4">
+        <h1 class="text-capitalize mb-4">Welcome to Logistic Management System</h1>
+        <!-- <img src="https://via.placeholder.com/150" class="img-fluid mb-4" alt="Logistics Image"> -->
 
-<div *ngIf="roleName === 'BUSINESS'">
-    <app-addcargo></app-addcargo>
-  </div>
-  <div *ngIf="roleName === 'DRIVER'">
-    <app-assgin-cargo></app-assgin-cargo>
+        <!-- Assuming roleName is defined in the Angular component's TypeScript file -->
+        <div *ngIf="roleName === 'BUSINESS'" class="mb-4">
+            <app-addcargo></app-addcargo>
+        </div>
 
-  </div>
+        <div *ngIf="roleName === 'DRIVER'" class="mb-4">
+            <app-assgin-cargo></app-assgin-cargo>
+        </div>
 
-  <div *ngIf="roleName === 'CUSTOMER'">
-    <app-viewcargostatus></app-viewcargostatus>
+        <div *ngIf="roleName === 'CUSTOMER'" class="mb-4">
+            <app-viewcargostatus></app-viewcargostatus>
+        </div>
+    </div>
 
-  </div>
-    
-    
+    <!-- Footer -->
+    <!-- <footer class="text-center">
+        <p>Developed by [Your Name]</p>
+        <p>Contact: [Your Email]</p>
+    </footer> -->
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
